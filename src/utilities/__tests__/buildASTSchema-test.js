@@ -259,7 +259,7 @@ describe('Schema Builder', () => {
         str(int: Int, bool: Boolean): String
       }
     `;
-    const output = cycleOutput(body, 'Hello');
+    const output = cycleOutput(body);
     expect(output).to.equal(body);
   });
 
@@ -273,7 +273,7 @@ describe('Schema Builder', () => {
         str: String
       }
     `;
-    const output = cycleOutput(body, 'Hello');
+    const output = cycleOutput(body);
     expect(output).to.equal(body);
   });
 
@@ -354,6 +354,18 @@ describe('Schema Builder', () => {
     `;
     const output = cycleOutput(body);
     expect(output).to.equal(body);
+  });
+
+  it('Can build recursive Union', () => {
+    const schema = buildSchema(dedent`
+      union Hello = Hello
+
+      type Query {
+        hello: Hello
+      }
+    `);
+    const errors = validateSchema(schema);
+    expect(errors.length).to.be.above(0);
   });
 
   it('Specifying Union type using __typename', () => {
