@@ -1018,6 +1018,23 @@ describe('extendSchema', () => {
     expect(isScalarType(arg1.type)).to.equal(true);
   });
 
+  it('Rejects invalid SDL', () => {
+    const sdl = `
+      extend schema @unknown
+    `;
+    expect(() => extendTestSchema(sdl)).to.throw(
+      'Unknown directive "unknown".',
+    );
+  });
+
+  it('Allows to disable SDL validation', () => {
+    const sdl = `
+      extend schema @unknown
+    `;
+    extendTestSchema(sdl, { assumeValid: true });
+    extendTestSchema(sdl, { assumeValidSDL: true });
+  });
+
   it('does not allow replacing a default directive', () => {
     const sdl = `
       directive @include(if: Boolean!) on FIELD | FRAGMENT_SPREAD
@@ -1269,21 +1286,6 @@ describe('extendSchema', () => {
         }
       `);
       expect(schema.getMutationType()).to.equal(null);
-    });
-
-    it('does not allow overriding schema within an extension', () => {
-      const sdl = `
-        schema {
-          mutation: Mutation
-        }
-
-        type Mutation {
-          doSomething: String
-        }
-      `;
-      expect(() => extendTestSchema(sdl)).to.throw(
-        'Cannot define a new schema within a schema extension.',
-      );
     });
 
     it('adds schema definition missing in the original schema', () => {
