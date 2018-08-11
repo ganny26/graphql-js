@@ -127,7 +127,7 @@ describe('Validate: Known directives', () => {
     expectPassesRule(
       KnownDirectives,
       `
-      query Foo($var: Boolean @onVariableDefinition) @onQuery {
+      query Foo($var: Boolean) @onQuery {
         name @include(if: $var)
         ...Frag @include(if: true)
         skippedField @skip(if: true)
@@ -141,11 +141,23 @@ describe('Validate: Known directives', () => {
     );
   });
 
+  it('Experimental: with well placed variable definition directive', () => {
+    expectPassesRule(
+      KnownDirectives,
+      `
+      query Foo($var: Boolean @onVariableDefinition) {
+        name
+      }
+      `,
+      { experimentalVariableDefinitionDirectives: true },
+    );
+  });
+
   it('with misplaced directives', () => {
     expectFailsRule(
       KnownDirectives,
       `
-      query Foo($var: Boolean @onField) @include(if: true) {
+      query Foo($var: Boolean) @include(if: true) {
         name @onQuery @include(if: $var)
         ...Frag @onQuery
       }
@@ -155,12 +167,24 @@ describe('Validate: Known directives', () => {
       }
     `,
       [
-        misplacedDirective('onField', 'VARIABLE_DEFINITION', 2, 31),
-        misplacedDirective('include', 'QUERY', 2, 41),
+        misplacedDirective('include', 'QUERY', 2, 32),
         misplacedDirective('onQuery', 'FIELD', 3, 14),
         misplacedDirective('onQuery', 'FRAGMENT_SPREAD', 4, 17),
         misplacedDirective('onQuery', 'MUTATION', 7, 20),
       ],
+    );
+  });
+
+  it('Experimental: with misplaced variable definition directive', () => {
+    expectFailsRule(
+      KnownDirectives,
+      `
+      query Foo($var: Boolean @onField) {
+        name
+      }
+      `,
+      [misplacedDirective('onField', 'VARIABLE_DEFINITION', 2, 31)],
+      { experimentalVariableDefinitionDirectives: true },
     );
   });
 
