@@ -32,182 +32,328 @@ parserOptions:
   unicodeCodePointEscapes: true
 
 rules:
+  # https://github.com/prettier/eslint-plugin-prettier#installation
   prettier/prettier: error
 
-  flowtype/space-after-type-colon: off
-  flowtype/space-before-type-colon: off
-  flowtype/space-before-generic-bracket: off
-  flowtype/union-intersection-spacing: off
-  flowtype/no-weak-types: [error, {any: false}]
-  flowtype/define-flow-type: error
-  flowtype/use-flow-type: error
-  flowtype/semi: off
+  # `eslint-plugin-flowtype` rule list based on `v2.50.0`
+  # https://github.com/gajus/eslint-plugin-flowtype#eslint-plugin-flowtype
 
-  arrow-parens: off
-  arrow-spacing: off
+  #flowtype/array-style-complex-type: undecided
+  #flowtype/array-style-simple-type: undecided
+  flowtype/boolean-style: off
+  flowtype/define-flow-type: error
+  flowtype/delimiter-dangle: off
+  flowtype/generic-spacing: off
+  #flowtype/newline-after-flow-annotation: undecided
+  #flowtype/no-dupe-keys: undecided
+  #flowtype/no-existential-type: undecided
+  #flowtype/no-flow-fix-me-comments: undecided
+  #flowtype/no-mutable-array: undecided
+  #flowtype/no-primitive-constructor-types: undecided
+  #flowtype/no-types-missing-file-annotation: undecided
+  #flowtype/no-unused-expressions: undecided
+  flowtype/no-weak-types: [error, {any: false}]
+  flowtype/object-type-delimiter: off
+  #flowtype/require-exact-type: undecided
+  #flowtype/require-parameter-type: undecided
+  #flowtype/require-return-type: undecided
+  #flowtype/require-types-at-top: undecided
+  #flowtype/require-valid-file-annotation: undecided
+  #flowtype/require-variable-type: undecided
+  flowtype/semi: off
+  #flowtype/sort-keys: undecided
+  flowtype/space-after-type-colon: off
+  flowtype/space-before-generic-bracket: off
+  flowtype/space-before-type-colon: off
+  #flowtype/type-id-match: undecided
+  #flowtype/type-import-style: undecided
+  flowtype/union-intersection-spacing: off
+  flowtype/use-flow-type: error
+  #flowtype/valid-syntax: undecided
+
+  # Possible Errors
+  # https://eslint.org/docs/rules/#possible-errors
+
+  #for-direction: undecided
+  #getter-return: undecided
+  #no-async-promise-executor: undecided
+  no-await-in-loop: error
+  #no-compare-neg-zero: undecided
+  no-cond-assign: error
+  no-console: warn
+  no-constant-condition: error
+  no-control-regex: off
+  no-debugger: warn
+  no-dupe-args: error
+  no-dupe-keys: error
+  no-duplicate-case: error
+  no-empty: error
+  no-empty-character-class: error
+  no-ex-assign: error
+  no-extra-boolean-cast: error
+  no-extra-parens: off
+  no-extra-semi: off
+  no-func-assign: error
+  no-inner-declarations: [error, functions]
+  no-invalid-regexp: error
+  no-irregular-whitespace: error
+  #no-misleading-character-class: undecided
+  no-obj-calls: error
+  #no-prototype-builtins: undecided
+  no-regex-spaces: error
+  no-sparse-arrays: error
+  #no-template-curly-in-string: undecided
+  no-unexpected-multiline: off
+  no-unreachable: error
+  #no-unsafe-finally: undecided
+  no-unsafe-negation: error
+  #require-atomic-updates: undecided
+  use-isnan: error
+  valid-jsdoc: off
+  valid-typeof: error
+
+  # Best Practices
+  # https://eslint.org/docs/rules/#best-practices
+
+  #accessor-pairs: undecided
+  #array-callback-return: undecided
   block-scoped-var: off
-  brace-style: off
-  callback-return: error
-  camelcase: [error, {properties: always}]
-  comma-dangle: off
-  comma-spacing: off
-  comma-style: off
+  #class-methods-use-this: undecided
   complexity: off
-  computed-property-spacing: off
   consistent-return: off
-  consistent-this: off
   curly: [error, all]
   default-case: off
   dot-location: off
   dot-notation: off
-  eol-last: off
-  func-call-spacing: off
   eqeqeq: [error, smart]
-  func-names: off
-  func-style: off
   guard-for-in: error
-  handle-callback-err: [error, error]
-  id-length: off
-  id-match: [error, "^(?:_?[a-zA-Z0-9]*)|[_A-Z0-9]+$"]
-  indent: off
-  init-declarations: off
-  key-spacing: off
-  keyword-spacing: off
-  linebreak-style: error
-  lines-around-comment: off
-  max-depth: off
-  max-len: off
-  max-nested-callbacks: off
-  max-params: off
-  max-statements: off
-  new-cap: off
-  new-parens: off
+  #max-classes-per-file: undecided
   no-alert: error
-  no-array-constructor: error
-  no-await-in-loop: error
-  no-bitwise: off
   no-caller: error
-  no-class-assign: error
-  no-cond-assign: error
-  no-console: warn
-  no-const-assign: error
-  no-constant-condition: error
-  no-continue: off
-  no-control-regex: off
-  no-debugger: warn
-  no-delete-var: error
+  #no-case-declarations: undecided
   no-div-regex: error
-  no-dupe-args: error
-  no-dupe-keys: error
-  no-duplicate-case: error
   no-else-return: error
-  no-empty: error
-  no-empty-character-class: error
+  #no-empty-function: undecided
+  #no-empty-pattern: undecided
   no-eq-null: off
   no-eval: error
-  no-ex-assign: error
   no-extend-native: error
   no-extra-bind: error
-  no-extra-boolean-cast: error
-  no-extra-parens: off
-  no-extra-semi: off
+  #no-extra-label: undecided
   no-fallthrough: error
   no-floating-decimal: off
-  no-func-assign: error
+  #no-global-assign: undecided
   no-implicit-coercion: error
+  #no-implicit-globals: undecided
   no-implied-eval: error
-  no-inline-comments: off
-  no-inner-declarations: [error, functions]
-  no-invalid-regexp: error
   no-invalid-this: off
-  no-irregular-whitespace: error
   no-iterator: error
-  no-label-var: error
   no-labels: [error, {allowLoop: true}]
   no-lone-blocks: error
-  no-lonely-if: error
   no-loop-func: off
-  no-mixed-requires: [error, true]
-  no-mixed-spaces-and-tabs: off
+  #no-magic-numbers: undecided
   no-multi-spaces: off
   no-multi-str: error
-  no-multiple-empty-lines: off
-  no-nested-ternary: off
   no-new: error
   no-new-func: off
-  no-new-object: error
-  no-new-require: error
   no-new-wrappers: error
-  no-obj-calls: error
   no-octal: error
   no-octal-escape: error
   no-param-reassign: error
-  no-path-concat: error
-  no-plusplus: off
-  no-process-env: off
-  no-process-exit: off
   no-proto: error
   no-redeclare: error
-  no-regex-spaces: error
-  no-restricted-modules: off
+  #no-restricted-properties: undecided
   no-return-assign: error
+  #no-return-await: undecided
   no-script-url: error
+  #no-self-assign: undecided
   no-self-compare: off
   no-sequences: off
-  no-shadow: error
-  no-shadow-restricted-names: error
-  no-spaced-func: off
-  no-sparse-arrays: error
-  no-sync: error
-  no-ternary: off
-  no-this-before-super: error
   no-throw-literal: error
-  no-trailing-spaces: off
-  no-undef: error
-  no-undef-init: error
-  no-undefined: off
-  no-underscore-dangle: off
-  no-unexpected-multiline: off
-  no-unneeded-ternary: error
-  no-unreachable: error
-  no-unsafe-negation: error
+  #no-unmodified-loop-condition: undecided
   no-unused-expressions: error
-  no-unused-vars: [error, {vars: all, args: after-used, argsIgnorePattern: "^_"}]
-  no-use-before-define: off
+  #no-unused-labels: undecided
   no-useless-call: error
+  #no-useless-concat: undecided
   no-useless-escape: error
   no-useless-return: error
-  no-var: error
   no-void: error
   no-warning-comments: off
   no-with: error
-  object-curly-spacing: [off, always]
-  object-shorthand: [error, always]
+  #prefer-promise-reject-errors: undecided
+  radix: error
+  #require-await: undecided
+  #require-unicode-regexp: undecided
+  vars-on-top: off
+  wrap-iife: off
+  yoda: [error, never, {exceptRange: true}]
+
+  # Strict Mode
+  # https://eslint.org/docs/rules/#strict-mode
+
+  strict: off
+
+  # Variables
+  # https://eslint.org/docs/rules/#variables
+
+  init-declarations: off
+  no-delete-var: error
+  no-label-var: error
+  #no-restricted-globals: undecided
+  no-shadow: error
+  no-shadow-restricted-names: error
+  no-undef: error
+  no-undef-init: error
+  no-undefined: off
+  no-unused-vars: [error, {vars: all, args: after-used, argsIgnorePattern: "^_"}]
+  no-use-before-define: off
+
+  # Node.js and CommonJS
+  # https://eslint.org/docs/rules/#nodejs-and-commonjs
+
+  callback-return: error
+  #global-require: undecided
+  handle-callback-err: [error, error]
+  #no-buffer-constructor: undecided
+  no-mixed-requires: [error, true]
+  no-new-require: error
+  no-path-concat: error
+  no-process-env: off
+  no-process-exit: off
+  no-restricted-modules: off
+  no-sync: error
+
+  # Stylistic Issues
+  # https://eslint.org/docs/rules/#stylistic-issues
+
+  array-bracket-newline: off
+  array-bracket-spacing: off
+  array-element-newline: off
+  block-spacing: off
+  brace-style: off
+  camelcase: [error, {properties: always}]
+  #capitalized-comments: undecided
+  comma-dangle: off
+  comma-spacing: off
+  comma-style: off
+  computed-property-spacing: off
+  consistent-this: off
+  eol-last: off
+  func-call-spacing: off
+  #func-name-matching: undecided
+  func-names: off
+  func-style: off
+  function-paren-newline: off
+  #id-blacklist: undecided
+  id-length: off
+  id-match: [error, "^(?:_?[a-zA-Z0-9]*)|[_A-Z0-9]+$"]
+  implicit-arrow-linebreak: off
+  indent: off
+  jsx-quotes: off
+  key-spacing: off
+  keyword-spacing: off
+  #line-comment-position: undecided
+  linebreak-style: error
+  lines-around-comment: off
+  #lines-between-class-members: undecided
+  max-depth: off
+  max-len: off
+  #max-lines: undecided
+  #max-lines-per-function: undecided
+  max-nested-callbacks: off
+  max-params: off
+  max-statements: off
+  #max-statements-per-line: undecided
+  #multiline-comment-style: undecided
+  multiline-ternary: off
+  new-cap: off
+  new-parens: off
+  newline-per-chained-call: off
+  no-array-constructor: error
+  no-bitwise: off
+  no-continue: off
+  no-inline-comments: off
+  no-lonely-if: error
+  no-mixed-operators: off
+  no-mixed-spaces-and-tabs: off
+  #no-multi-assign: undecided
+  no-multiple-empty-lines: off
+  #no-negated-condition: undecided
+  no-nested-ternary: off
+  no-new-object: error
+  no-plusplus: off
+  no-spaced-func: off
+  #no-restricted-syntax: undecided
+  #no-tabs: undecided
+  no-ternary: off
+  no-trailing-spaces: off
+  no-underscore-dangle: off
+  no-unneeded-ternary: error
+  no-whitespace-before-property: off
+  nonblock-statement-body-position: off
+  object-curly-newline: off
+  object-curly-spacing: off
+  object-property-newline: off
   one-var: [error, never]
+  one-var-declaration-per-line: off
   operator-assignment: [error, always]
+  operator-linebreak: off
   padded-blocks: off
   padding-line-between-statements: off
-  prefer-const: error
-  prefer-spread: off
+  #prefer-object-spread: undecided
   quote-props: off
-  radix: error
-  require-yield: off
+  quotes: off
+  #require-jsdoc: undecided
   semi: off
   semi-spacing: off
+  semi-style: off
+  #sort-keys: undecided
   sort-vars: off
   space-before-blocks: off
+  space-before-function-paren: off
   space-in-parens: off
   space-infix-ops: off
   space-unary-ops: off
   spaced-comment: [error, always]
-  strict: off
-  use-isnan: error
-  valid-jsdoc: off
-  valid-typeof: error
-  vars-on-top: off
-  wrap-iife: off
+  switch-colon-spacing: off
+  template-tag-spacing: off
+  unicode-bom: off
   wrap-regex: off
-  yoda: [error, never, {exceptRange: true}]
+
+  # ECMAScript 6
+  # https://eslint.org/docs/rules/#ecmascript-6
+
+  #arrow-body-style: undecided
+  arrow-parens: off
+  arrow-spacing: off
+  #constructor-super: undecided
+  generator-star-spacing: off
+  no-class-assign: error
+  #no-confusing-arrow: undecided
+  no-const-assign: error
+  #no-dupe-class-members: undecided
+  #no-duplicate-imports: undecided
+  #no-new-symbol: undecided
+  #no-restricted-imports: undecided
+  no-this-before-super: error
+  #no-useless-computed-key: undecided
+  #no-useless-constructor: undecided
+  #no-useless-rename: undecided
+  no-var: error
+  object-shorthand: [error, always]
+  #prefer-arrow-callback: undecided
+  prefer-const: error
+  #prefer-destructuring: undecided
+  #prefer-numeric-literals: undecided
+  #prefer-rest-params: undecided
+  prefer-spread: off
+  #prefer-template: undecided
+  require-yield: off
+  rest-spread-spacing: off
+  #sort-imports: undecided
+  #symbol-description: undecided
+  template-curly-spacing: off
+  yield-star-spacing: off
 
 overrides:
   - files: "*"

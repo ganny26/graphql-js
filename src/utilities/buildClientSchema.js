@@ -221,7 +221,7 @@ export function buildClientSchema(
     return new GraphQLObjectType({
       name: objectIntrospection.name,
       description: objectIntrospection.description,
-      interfaces: objectIntrospection.interfaces.map(getInterfaceType),
+      interfaces: () => objectIntrospection.interfaces.map(getInterfaceType),
       fields: () => buildFieldDefMap(objectIntrospection),
     });
   }
@@ -248,7 +248,7 @@ export function buildClientSchema(
     return new GraphQLUnionType({
       name: unionIntrospection.name,
       description: unionIntrospection.description,
-      types: unionIntrospection.possibleTypes.map(getObjectType),
+      types: () => unionIntrospection.possibleTypes.map(getObjectType),
     });
   }
 
@@ -341,6 +341,12 @@ export function buildClientSchema(
     if (!directiveIntrospection.args) {
       throw new Error(
         'Introspection result missing directive args: ' +
+          inspect(directiveIntrospection),
+      );
+    }
+    if (!directiveIntrospection.locations) {
+      throw new Error(
+        'Introspection result missing directive locations: ' +
           inspect(directiveIntrospection),
       );
     }
